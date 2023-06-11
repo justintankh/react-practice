@@ -1,0 +1,20 @@
+.inputContainer {
+	gap: 13px;
+	margin-top: 10px;
+
+	--inputfield-width: calc(50vw - var(--app-padding) * 2);
+	--inputfield-min-width: 400px;
+	width: max(var(--inputfield-min-width), var(--inputfield-width));
+}
+
+.btn-tenure {
+	height: 35px;
+	width: 10%;
+	border-radius: 100px;
+	border: none;
+}
+
+.btn-selected {
+	border: 1px solid #15556c;
+	background-color: #7abfd8;
+}
