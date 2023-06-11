@@ -3,5 +3,7 @@ import App from "./app/App.tsx";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-	<App />
+	<div className="index">
+		<App />
+	</div>
 );

@@ -4,7 +4,7 @@ import {
 	MAX_LENGTH,
 	topMenuObject,
 	SpecialButtonsList,
-} from "../const";
+} from "./const";
 import { listContains } from "./utils";
 
 const useCalculatorHook = () => {
@@ -25,17 +25,27 @@ const useCalculatorHook = () => {
 			if (prev === "0") return digit;
 			if (prev.length === MAX_LENGTH) return prev;
 
-			const numberOfPeriod = [...prev].filter((x) => x == ".").length;
+			const numberOfPeriod = [...prev].filter(
+				(x) => x == "."
+			).length;
 			const hasOperator = SpecialButtonsList.some((x) =>
 				listContains(prev, x)
 			);
 
 			// With operator
-			if (numberOfPeriod === 2 && digit === "." && hasOperator) {
+			if (
+				numberOfPeriod === 2 &&
+				digit === "." &&
+				hasOperator
+			) {
 				return prev;
 			}
 			// Without operator
-			else if (numberOfPeriod === 1 && digit === "." && !hasOperator) {
+			else if (
+				numberOfPeriod === 1 &&
+				digit === "." &&
+				!hasOperator
+			) {
 				return prev;
 			}
 			// normal operation
@@ -48,7 +58,9 @@ const useCalculatorHook = () => {
 		// if yes, then do nothing
 		setAmountDisplay((prev) => {
 			const allOperators = SpecialButtonsList;
-			const hasOperator = allOperators.some((x) => listContains(prev, x));
+			const hasOperator = allOperators.some((x) =>
+				listContains(prev, x)
+			);
 			if (hasOperator) return prev;
 			return prev + operator;
 		});
@@ -99,7 +111,10 @@ const useCalculatorHook = () => {
 		});
 	};
 
-	const RenderMenuRow = (menuConfig: topMenuObject[], className?: string) => {
+	const RenderMenuRow = (
+		menuConfig: topMenuObject[],
+		className?: string
+	) => {
 		return menuConfig.map(({ buttonLabel }) => {
 			return (
 				<button
@@ -117,7 +132,7 @@ const useCalculatorHook = () => {
 	const RenderEqualButton = () => {
 		return (
 			<button
-				className={"btn-number btn-equal"}
+				className={"btn-number equal"}
 				key={"="}
 				onClick={computeEquals}>
 				{"="}

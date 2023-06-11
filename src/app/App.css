@@ -20,16 +20,16 @@
 }
 
 .calculatorModel {
-	margin: auto;
-	margin-top: 15vh;
 	width: max(var(--calc-width), var(--calc-min-width));
 
 	border: 1px solid black;
 	border-radius: 10px;
 	background-color: white;
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
 	overflow: hidden;
 
-	font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+	font-family: Cambria, Cochin, Georgia, Times, "Times New Roman",
+		serif;
 }
 
 .display {
@@ -45,13 +45,6 @@
 	font-weight: 900;
 	font-size: 1.8rem;
 	font-family: "Courier New", Courier, monospace;
-}
-
-.numberRow {
-	display: flex;
-	flex-direction: row;
-	gap: var(--flex-gap);
-	justify-content: space-evenly;
 }
 
 .btn-special-char {
@@ -73,10 +66,14 @@
 	font-size: 1em;
 }
 
-.btn-equal {
+.equal {
 	height: 100%;
 
 	background-color: rgb(188, 98, 98);
 	font-size: 2rem;
 	/* border: none; */
+}
+
+.flexGrow1 {
+	flex-grow: 1;
 }
