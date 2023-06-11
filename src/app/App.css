@@ -43,7 +43,7 @@
 	color: white;
 
 	font-weight: 900;
-	font-size: 1.5rem;
+	font-size: 1.8rem;
 	font-family: "Courier New", Courier, monospace;
 }
 
@@ -54,8 +54,8 @@
 	justify-content: space-evenly;
 }
 
-.btn-top-menu {
-	width: 100%;
+.btn-special-char {
+	width: calc(max(var(--calc-width), var(--calc-min-width)) * 0.25);
 	padding-top: 7.5%;
 	padding-bottom: 7.5%;
 
