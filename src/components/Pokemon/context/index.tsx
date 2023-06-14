@@ -6,7 +6,7 @@ export const PokemonContext = React.createContext<PokemonContextType>(
 );
 
 export const PokemonContextProvider: React.FC<{
-	children?: React.ReactNode;
+	children: React.ReactNode;
 }> = ({ children }) => {
 	const [searchTerm, setSearchTerm] = React.useState<string>("");
 	const [showId, setShowId] = React.useState<number>(-1);

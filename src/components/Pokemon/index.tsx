@@ -19,7 +19,6 @@ const PokemonList = (list: Pokemon[]) => {
 					<span className="dataField">
 						{data.type.join(" ")}
 					</span>
-					<span className="dataField">URL</span>
 					<button
 						className="infoButton"
 						onClick={() =>
@@ -33,28 +32,28 @@ const PokemonList = (list: Pokemon[]) => {
 					</button>
 				</div>
 				{showId === data.id ? (
-					<div className="flexRow">
-						<span className="dataField">
+					<div className="flexRow dataEntry infoBlock">
+						<span className="dataField infoField">
 							Attack: {data.base.Attack}
 						</span>
-						<span className="dataField">
+						<span className="dataField infoField">
 							Defense: {data.base.Defense}
 						</span>
-						<span className="dataField">
+						<span className="dataField infoField">
 							HP: {data.base.HP}
 						</span>
-						<span className="dataField">
+						<span className="dataField infoField">
 							Sp. Atk: {data.base["Sp. Attack"]}
 						</span>
-						<span className="dataField">
+						<span className="dataField infoField">
 							Sp. Def: {data.base["Sp. Defense"]}
 						</span>
-						<span className="dataField">
+						<span className="dataField infoField">
 							Speed: {data.base.Speed}
 						</span>
 					</div>
 				) : (
-					<></>
+					<div></div>
 				)}
 			</div>
 		);
