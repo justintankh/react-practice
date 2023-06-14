@@ -1,11 +1,14 @@
+import React from "react";
+import { PokemonContext } from "./context";
 import { Pokemon } from "./types";
 
-const PokemonList = (
-	list: Pokemon[],
-	setShowId: React.Dispatch<React.SetStateAction<number>>,
-	showId: number
-) => {
-	function PokemonRow(data: Pokemon, showInfoId: number) {
+const PokemonList = (list: Pokemon[]) => {
+	const {
+		methods: { setShowId },
+		states: { showId },
+	} = React.useContext(PokemonContext);
+
+	function PokemonRow(data: Pokemon) {
 		return (
 			<div key={data.id.toString()} className="flexColumn">
 				<div className="flexRow dataEntry">
@@ -29,7 +32,7 @@ const PokemonList = (
 						More information{" "}
 					</button>
 				</div>
-				{showInfoId === data.id ? (
+				{showId === data.id ? (
 					<div className="flexRow">
 						<span className="dataField">
 							Attack: {data.base.Attack}
@@ -57,7 +60,7 @@ const PokemonList = (
 		);
 	}
 
-	return list.map((pokemon) => PokemonRow(pokemon, showId));
+	return list.map((pokemon) => PokemonRow(pokemon));
 };
 
 export default PokemonList;
