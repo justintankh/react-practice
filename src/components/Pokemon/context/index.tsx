@@ -14,14 +14,21 @@ export const PokemonContextProvider: React.FC<{
 }> = ({ children }) => {
 	const [state, dispatch] = usePokemonReducer();
 	const { pokemonList } = useFetchPokemon();
-	const { filteredPokemon } = useFilterHook();
+	const { filteredPokemon, slice } = useFilterHook();
 
 	useEffect(() => {
 		dispatch({
 			type: PokemonReducerActionType.SET_POKEMON,
-			payload: pokemonList,
+			payload: filteredPokemon(pokemonList, state.search),
 		});
-	}, [pokemonList]);
+	}, [
+		/* For state to set on load */
+		pokemonList,
+		/* For lazy loading to update */
+		slice,
+		/* For text filtered pokemon to update */
+		state.search,
+	]);
 
 	const providerValues: PokemonContextType = {
 		states: {
@@ -38,10 +45,6 @@ export const PokemonContextProvider: React.FC<{
 				dispatch({
 					type: PokemonReducerActionType.SET_SEARCH,
 					payload: text,
-				});
-				dispatch({
-					type: PokemonReducerActionType.SET_POKEMON,
-					payload: filteredPokemon(pokemonList, text),
 				});
 			},
 		},

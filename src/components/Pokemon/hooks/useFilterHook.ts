@@ -9,8 +9,16 @@ const useFilterHook = () => {
 		var offset = d.scrollTop + window.innerHeight;
 		var height = d.offsetHeight;
 
+		/* increase content scrollbar smaller */
 		if (offset === height) {
 			setSlice((prev) => prev + 20);
+		}
+		/* Lesson content scrollbar smaller */
+		if (
+			Math.round(offset) < Math.round(height / 2) &&
+			slice > 20
+		) {
+			setSlice((prev) => prev - 20);
 		}
 	};
 
@@ -26,6 +34,7 @@ const useFilterHook = () => {
 
 	return {
 		filteredPokemon,
+		slice,
 	};
 };
 
