@@ -1,12 +1,8 @@
 import { useState } from "react";
 import { Pokemon } from "../types";
-import { PokemonContext } from "../context";
-import React from "react";
 
 const useFilterHook = () => {
 	const [slice, setSlice] = useState<number>(20);
-
-	const { searchTerm } = React.useContext(PokemonContext).states;
 
 	window.onscroll = function () {
 		var d = document.documentElement;
@@ -18,12 +14,12 @@ const useFilterHook = () => {
 		}
 	};
 
-	function filteredPokemon(pokemons: Pokemon[]) {
+	function filteredPokemon(pokemons: Pokemon[], text: string) {
 		return pokemons
 			.filter((pokemon) =>
 				pokemon.name.english
 					.toLocaleLowerCase()
-					.includes(searchTerm)
+					.includes(text)
 			)
 			.slice(0, slice);
 	}

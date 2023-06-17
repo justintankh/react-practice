@@ -1,10 +1,9 @@
+import { PokemonReducerState } from "../reducer/types";
+
 export type PokemonContextType = {
-	states: {
-		searchTerm: string;
-		showId: number;
-	};
+	states: PokemonReducerState;
 	methods: {
-		setShowId: React.Dispatch<React.SetStateAction<number>>;
-		setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+		setSelected: (e: number) => void;
+		setSearch: (e: string) => void;
 	};
 };

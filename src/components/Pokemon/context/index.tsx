@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { PokemonContextType } from "./types";
+import { usePokemonReducer } from "../reducer";
+import { PokemonReducerActionType } from "../reducer/types";
+import useFetchPokemon from "../hooks/useFetchPokemon";
+import useFilterHook from "../hooks/useFilterHook";
 
 export const PokemonContext = React.createContext<PokemonContextType>(
 	{} as any
@@ -8,17 +12,38 @@ export const PokemonContext = React.createContext<PokemonContextType>(
 export const PokemonContextProvider: React.FC<{
 	children: React.ReactNode;
 }> = ({ children }) => {
-	const [searchTerm, setSearchTerm] = React.useState<string>("");
-	const [showId, setShowId] = React.useState<number>(-1);
+	const [state, dispatch] = usePokemonReducer();
+	const { pokemonList } = useFetchPokemon();
+	const { filteredPokemon } = useFilterHook();
+
+	useEffect(() => {
+		dispatch({
+			type: PokemonReducerActionType.SET_POKEMON,
+			payload: pokemonList,
+		});
+	}, [pokemonList]);
 
 	const providerValues: PokemonContextType = {
 		states: {
-			searchTerm,
-			showId,
+			...state,
 		},
 		methods: {
-			setShowId,
-			setSearchTerm,
+			setSelected: (selectedId) => {
+				dispatch({
+					type: PokemonReducerActionType.SET_SELECT,
+					payload: selectedId,
+				});
+			},
+			setSearch: (text) => {
+				dispatch({
+					type: PokemonReducerActionType.SET_SEARCH,
+					payload: text,
+				});
+				dispatch({
+					type: PokemonReducerActionType.SET_POKEMON,
+					payload: filteredPokemon(pokemonList, text),
+				});
+			},
 		},
 	};
 

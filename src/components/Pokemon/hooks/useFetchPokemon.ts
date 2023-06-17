@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Pokemon } from "../types";
 
-const usePokemonHook = () => {
+const useFetchPokemon = () => {
 	const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
 
 	useEffect(() => {
@@ -16,7 +16,7 @@ const usePokemonHook = () => {
 			});
 	};
 
-	return { pokemons: pokemonList };
+	return { pokemonList };
 };
 
-export default usePokemonHook;
+export default useFetchPokemon;
