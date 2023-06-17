@@ -1,22 +1,19 @@
-import { useEffect, useState } from "react";
-import { Pokemon } from "../types";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { PokemonSagaActionType } from "../saga/types";
 
 const useFetchPokemon = () => {
-	const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
+	const dispatch = useDispatch();
 
-	useEffect(() => {
-		getPokemons();
-	}, []);
+	useEffect(
+		() => {
+			dispatch({ type: PokemonSagaActionType.FETCH_POKEMON });
+		},
+		/* to run only once on mount to set state */
+		[]
+	);
 
-	const getPokemons = async () => {
-		fetch("./src/assets/pokemon.json")
-			.then((res) => res.json())
-			.then((pokemon) => {
-				setPokemonList(pokemon);
-			});
-	};
-
-	return { pokemonList };
+	return {};
 };
 
 export default useFetchPokemon;

@@ -5,13 +5,14 @@ import {
 	PokemonReducerActionType,
 } from "../store/types.ts";
 import { usePokemonStore } from "../store/index.ts";
-import { PokemonSagaActionType } from "../saga/types.ts";
 import useFilterHook from "../hooks/useFilterHook.ts";
+import useFetchPokemon from "../hooks/useFetchPokemon.ts";
 
 const PokemonStoreService: React.FC<{
 	children: React.ReactNode;
 }> = ({ children }) => {
 	const dispatch = useDispatch();
+	const {} = useFetchPokemon();
 	const { filteredPokemon, slice } = useFilterHook();
 
 	const search = useSelector<
@@ -23,13 +24,6 @@ const PokemonStoreService: React.FC<{
 		PokemonReducerState,
 		PokemonReducerState["pokemonList"]
 	>((state) => state.pokemonList);
-
-	useEffect(() => {
-		dispatch({ type: PokemonSagaActionType.FETCH_POKEMON });
-	}, [
-		/* to run only once on mount to set state */
-		!pokemonList,
-	]);
 
 	useEffect(() => {
 		dispatch({

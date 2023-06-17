@@ -1,7 +1,7 @@
 import { takeEvery } from "redux-saga/effects";
 import createSagaMiddleware from "@redux-saga/core";
 import { PokemonSagaActionType } from "./types";
-import { fetchPokemonAction } from "./action";
+import { fetchPokemonAction } from "./actions";
 /* listener */
 export function* pokemonRootSaga() {
 	yield takeEvery(
