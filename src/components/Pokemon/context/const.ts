@@ -1,10 +1,13 @@
-export const initialState = {
+import { PokemonContextType } from "./types";
+
+export const initialState: PokemonContextType = {
 	states: {
-		searchTerm: "",
-		showId: -1,
+		pokemonList: [],
+		search: "",
+		selected: -1,
 	},
 	methods: {
-		setShowId: () => {},
-		setSearchTerm: () => {},
+		setSelected: () => {},
+		setSearch: () => {},
 	},
 };
