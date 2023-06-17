@@ -1,13 +1,13 @@
-import React from "react";
 import { initialState } from "./const";
 import {
 	PokemonReducerAction,
 	PokemonReducerActionType,
 	PokemonReducerState,
 } from "./types";
+import { configureStore } from "@reduxjs/toolkit";
 
 const pokemonReducer = (
-	state: PokemonReducerState,
+	state: PokemonReducerState = initialState,
 	action: PokemonReducerAction
 ): PokemonReducerState => {
 	switch (action.type) {
@@ -27,11 +27,12 @@ const pokemonReducer = (
 				selected: action.payload,
 			};
 		default:
-			throw new Error(
-				`no action implemented: ${action["type"]}`
-			);
+			return state;
 	}
 };
 
-export const usePokemonReducer = () =>
-	React.useReducer(pokemonReducer, initialState);
+export const usePokemonStore = () =>
+	configureStore<PokemonReducerState, PokemonReducerAction>({
+		reducer: pokemonReducer,
+		preloadedState: initialState,
+	});

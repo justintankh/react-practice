@@ -1,12 +1,22 @@
-import React from "react";
-import { PokemonContext } from "../context";
 import { Pokemon } from "../types";
+import {
+	PokemonReducerAction,
+	PokemonReducerActionType,
+	PokemonReducerState,
+} from "../reducer/types";
+import { useDispatch, useSelector } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
 
 const PokemonList = () => {
-	const {
-		methods: { setSelected },
-		states: { selected, pokemonList },
-	} = React.useContext(PokemonContext);
+	const dispatch = useDispatch<Dispatch<PokemonReducerAction>>();
+	const pokemonList = useSelector<
+		PokemonReducerState,
+		PokemonReducerState["pokemonList"]
+	>((state) => state.pokemonList);
+	const selected = useSelector<
+		PokemonReducerState,
+		PokemonReducerState["selected"]
+	>((state) => state.selected);
 
 	function PokemonRow(data: Pokemon) {
 		return (
@@ -22,10 +32,13 @@ const PokemonList = () => {
 					<button
 						className="infoButton"
 						onClick={() =>
-							setSelected(
-								/* hide if pressed again */
-								selected == data.id ? -1 : data.id
-							)
+							dispatch({
+								type: PokemonReducerActionType.SET_SELECT,
+								payload:
+									selected == data.id
+										? -1
+										: data.id,
+							})
 						}>
 						More information{" "}
 					</button>

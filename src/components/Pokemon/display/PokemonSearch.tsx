@@ -1,11 +1,17 @@
-import React from "react";
-import { PokemonContext } from "../context";
+import { useDispatch, useSelector } from "react-redux";
+import {
+	PokemonReducerAction,
+	PokemonReducerActionType,
+	PokemonReducerState,
+} from "../reducer/types";
+import { Dispatch } from "@reduxjs/toolkit";
 
 export function PokemonSearch() {
-	const {
-		methods: { setSearch },
-		states: { search },
-	} = React.useContext(PokemonContext);
+	const dispatch = useDispatch<Dispatch<PokemonReducerAction>>();
+	const search = useSelector<
+		PokemonReducerState,
+		PokemonReducerState["search"]
+	>((state) => state.search);
 
 	return (
 		<input
@@ -13,7 +19,11 @@ export function PokemonSearch() {
 			type="text"
 			value={search}
 			onChange={(e) =>
-				setSearch(e.currentTarget.value.toLocaleLowerCase())
+				dispatch({
+					type: PokemonReducerActionType.SET_SEARCH,
+					payload:
+						e.currentTarget.value.toLocaleLowerCase(),
+				})
 			}
 			placeholder="Enter the pokemon to search"
 		/>

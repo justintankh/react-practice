@@ -1,6 +1,6 @@
-import { PokemonContextProvider } from "./context/index.tsx";
 import PokemonList from "./display/PokemonList.tsx";
 import { PokemonSearch } from "./display/PokemonSearch.tsx";
+import PokemonStoreProvider from "./provider/index.tsx";
 
 function RenderPokemon() {
 	return (
@@ -13,9 +13,9 @@ function RenderPokemon() {
 }
 
 const RenderPokemonWithProvider = () => (
-	<PokemonContextProvider>
+	<PokemonStoreProvider>
 		<RenderPokemon />
-	</PokemonContextProvider>
+	</PokemonStoreProvider>
 );
 
 export default RenderPokemonWithProvider;
