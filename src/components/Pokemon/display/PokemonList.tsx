@@ -3,16 +3,16 @@ import {
 	PokemonReducerAction,
 	PokemonReducerActionType,
 	PokemonReducerState,
-} from "../reducer/types";
+} from "../store/types";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 
 const PokemonList = () => {
 	const dispatch = useDispatch<Dispatch<PokemonReducerAction>>();
-	const pokemonList = useSelector<
+	const pokemonListFiltered = useSelector<
 		PokemonReducerState,
-		PokemonReducerState["pokemonList"]
-	>((state) => state.pokemonList);
+		PokemonReducerState["pokemonListFiltered"]
+	>((state) => state.pokemonListFiltered);
 	const selected = useSelector<
 		PokemonReducerState,
 		PokemonReducerState["selected"]
@@ -71,7 +71,7 @@ const PokemonList = () => {
 		);
 	}
 
-	return pokemonList.map((pokemon) => PokemonRow(pokemon));
+	return pokemonListFiltered.map((pokemon) => PokemonRow(pokemon));
 };
 
 export default PokemonList;

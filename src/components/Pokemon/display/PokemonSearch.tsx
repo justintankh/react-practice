@@ -3,7 +3,7 @@ import {
 	PokemonReducerAction,
 	PokemonReducerActionType,
 	PokemonReducerState,
-} from "../reducer/types";
+} from "../store/types";
 import { Dispatch } from "@reduxjs/toolkit";
 
 export function PokemonSearch() {

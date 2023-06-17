@@ -4,9 +4,8 @@ import {
 	PokemonReducerActionType,
 	PokemonReducerState,
 } from "./types";
-import { configureStore } from "@reduxjs/toolkit";
 
-const pokemonReducer = (
+export const pokemonReducer = (
 	state: PokemonReducerState = initialState,
 	action: PokemonReducerAction
 ): PokemonReducerState => {
@@ -15,6 +14,11 @@ const pokemonReducer = (
 			return {
 				...state,
 				pokemonList: action.payload,
+			};
+		case PokemonReducerActionType.SET_FILTERED_POKEMON:
+			return {
+				...state,
+				pokemonListFiltered: action.payload,
 			};
 		case PokemonReducerActionType.SET_SEARCH:
 			return {
@@ -30,9 +34,3 @@ const pokemonReducer = (
 			return state;
 	}
 };
-
-export const usePokemonStore = () =>
-	configureStore<PokemonReducerState, PokemonReducerAction>({
-		reducer: pokemonReducer,
-		preloadedState: initialState,
-	});
